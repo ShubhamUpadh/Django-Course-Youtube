@@ -4,9 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Django Templating</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+    table, th, td{
+        border:2px solid black;
+        border-collapse:collapse;
+        text-align: center;
+    }
+
+    </style>
 </head>
 <body>
-    <h1>Django Templating</h1>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptates, nulla laborum?</p>
+    <h1 class ="text-lg">Django Templating</h1>
+    <table>
+        <tr>
+          <th>S.No</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Can Vote ?</th>
+        </tr>
+        {% for person in people%}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{person.name}}</td>
+            <td>{{person.age}}</td>
+            <td {% if person.age <= 23%} style ="background:red" {% endif %}>
+                {% if person.age > 23%}
+                👍
+                {% else %}
+                👎
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+      </table>
 </body>
 </html>
